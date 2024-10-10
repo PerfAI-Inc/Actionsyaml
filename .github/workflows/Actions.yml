@@ -41,5 +41,5 @@ jobs:
              **Failure Summary:*
                - Please review the logs for more details: [View Logs] 
                    ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          to: fatima@perfai.ai
+          to: afrose@perfai.ai
           from: PerfAI      
