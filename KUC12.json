@@ -1,0 +1,159 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Career Service API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://35.154.87.237:8763"
+    }
+  ],
+  "paths": {
+    "/alpha/auth_service/login/generateOtp": {
+      "post": {
+        "summary": "Generate OTP for login",
+        "tags": ["Auth"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mobile": {
+                    "type": "string",
+                    "example": "+917845787884"
+                  },
+                  "isNewUser": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OTP generated successfully"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "security": []
+      }
+    },
+    "/alpha/career_service/career/getTopCareers": {
+      "get": {
+        "summary": "Get top careers",
+        "tags": ["Career"],
+        "responses": {
+          "200": {
+            "description": "List of top careers"
+          }
+        },
+        "security": []
+      }
+    },
+    "/alpha/auth_service/user/updateUserBasicInfo": {
+      "put": {
+        "summary": "Update user basic information",
+        "tags": ["User"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fname": { "type": "string" },
+                  "lname": { "type": "string" },
+                  "emailId": { "type": "string" },
+                  "mobNo": { "type": "string" },
+                  "dob": { "type": "string", "format": "date" },
+                  "gender": { "type": "string" },
+                  "educationalStatus": { "type": "string" },
+                  "pinCode": { "type": "string" },
+                  "city": { "type": "string" },
+                  "address": { "type": "string" },
+                  "countryCode": { "type": "string" }
+                },
+                "example": {
+                  "fname": "Abhi",
+                  "lname": "Vela",
+                  "emailId": "abhishekv@perceptcs.com",
+                  "mobNo": "1111111111",
+                  "dob": "2024-10-01",
+                  "gender": "Male",
+                  "educationalStatus": "12th Student",
+                  "pinCode": "444101",
+                  "city": "Pune",
+                  "address": "Kothrud",
+                  "countryCode": "+91"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "User information updated successfully"
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          },
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ]
+        }
+      }
+    },
+    "/alpha/auth_service/user/updateProfileImage": {
+      "put": {
+        "summary": "Update user profile image",
+        "tags": ["User"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "multipartFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Profile image updated successfully"
+            },
+            "400": {
+              "description": "Invalid request"
+            }
+          },
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ]
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
