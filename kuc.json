@@ -1,0 +1,206 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Career Services API",
+    "description": "API for generating OTP, getting top careers, and updating user information.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://35.154.87.237:8763/alpha"
+    }
+  ],
+  "paths": {
+    "/auth_service/login/generateOtp": {
+      "post": {
+        "summary": "Generate OTP",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mobile": {
+                    "type": "string",
+                    "example": "+917845787884"
+                  },
+                  "isNewUser": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OTP generated successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/career_service/career/getTopCareers": {
+      "get": {
+        "summary": "Get Top Careers",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "tags": [
+          "Careers"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of top careers"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/auth_service/user/updateUserBasicInfo": {
+      "put": {
+        "summary": "Update User Basic Information",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fname": {
+                    "type": "string",
+                    "example": "Abhi"
+                  },
+                  "lname": {
+                    "type": "string",
+                    "example": "Vela"
+                  },
+                  "emailId": {
+                    "type": "string",
+                    "example": "abhishekv@perceptcs.com"
+                  },
+                  "mobNo": {
+                    "type": "string",
+                    "example": "1111111111"
+                  },
+                  "dob": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2024-10-01"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "example": "Male"
+                  },
+                  "educationalStatus": {
+                    "type": "string",
+                    "example": "12th Student"
+                  },
+                  "pinCode": {
+                    "type": "string",
+                    "example": "444101"
+                  },
+                  "city": {
+                    "type": "string",
+                    "example": "Pune"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Kothrud"
+                  },
+                  "countryCode": {
+                    "type": "string",
+                    "example": "+91"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User information updated successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/auth_service/user/updateProfileImage": {
+      "put": {
+        "summary": "Update Profile Image",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "multipartFile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profile image updated successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "apiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY"
+      }
+    }
+  }
+}
