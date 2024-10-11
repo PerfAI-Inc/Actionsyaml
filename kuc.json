@@ -7,7 +7,7 @@ servers:
   - url: http://35.154.87.237:8763/alpha
 
 paths:
-  /generateOtp:
+ /auth_service/login/generateOtp:
     post:
       summary: Generate OTP
       security:
@@ -33,7 +33,7 @@ paths:
         '400':
           description: Bad Request
 
-  /getTopCareers:
+  /career_service/career/getTopCareers:
     get:
       summary: Get Top Careers
       security:
@@ -46,7 +46,7 @@ paths:
         '400':
           description: Bad Request
 
-  /updateUserBasicInfo:
+  /auth_service/user/updateUserBasicInfo:
     put:
       summary: Update User Basic Information
       security:
@@ -100,7 +100,7 @@ paths:
         '400':
           description: Bad Request
 
-  /updateProfileImage:
+  /auth_service/user/updateProfileImage:
     put:
       summary: Update Profile Image
       security:
