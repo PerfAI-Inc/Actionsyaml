@@ -14,8 +14,8 @@ jobs:
       - name: PerfAI APIPrivacy Test
         uses: PerfAI-Inc/perfai-api-privacy@v0.0.1
         with:
-           perfai-username: afrose@perfai.ai
-           perfai-password: Tester@786
+           perfai-username: ${{ secrets.PERFAI_USERNAME }}
+           perfai-password: ${{ secrets.PERFAI_PASSWORD }}
            perfai-api-id: "67084eb449f64891398f065a"
            perfai-api-name: "ActionL"
            perfai-wait-for-completion: "true"
